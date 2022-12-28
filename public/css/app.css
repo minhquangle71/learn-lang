@@ -1,0 +1,20 @@
+.content {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.answer-content .card-body.fail-answer {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24 !important;
+}
+.answer-content .card-body.success-answer {
+  color: #155724 !important;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}

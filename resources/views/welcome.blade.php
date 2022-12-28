@@ -1,5 +1,5 @@
 @extends('layouts.font')
 
 @section('content')
-    main
+    <a href="{{ route('lesson.index') }}">Lesson page</a>
 @endsection
