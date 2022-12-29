@@ -41,10 +41,11 @@ class ContestController extends Controller
         $main_question_id = [Helper::array_random($remain_part, 1)];
 
 
-        if ($success_id != INIT_QA_IDX) {
-            $success_ids = Session::get(SESSIOM_QA);
+        $success_ids = Session::get(SESSIOM_QA);
 
-            $total_success = is_array($success_ids) ? count($success_ids) : 0;
+        $total_success = is_array($success_ids) ? count($success_ids) : 0;
+
+        if (!in_array($success_id, [INIT_QA_IDX, FAIL_QA_IDX])) {
 
 
             if ($total_success == TOTAL_QUESTION || $total_success == count($vocabularies_idx)) {
@@ -69,7 +70,9 @@ class ContestController extends Controller
             log::info($main_question_id);
             Log::info('-------------------------------------');
         } else {
-            Session::forget(SESSIOM_QA);
+            if ($success_id == INIT_QA_IDX) {
+                Session::forget(SESSIOM_QA);
+            }
         }
 
         $question_idx     = array_merge($take_confuse, $main_question_id);
@@ -82,7 +85,7 @@ class ContestController extends Controller
         })->first();
         $questions     = $questions->shuffle();
 
-
+        $this->view_data['current_total'] = isset($success_ids) ? count($success_ids) : 0;
         $this->view_data['question_type'] = $question_type;
         $this->view_data['questions']     = $questions;
         $this->view_data['main_question'] = $main_question;

@@ -42,4 +42,5 @@ define('QUESTION_TYPE', [
 
 define('SUCCESS_ID', 'success_id');
 define('INIT_QA_IDX', 0);
+define('FAIL_QA_IDX', -1);
 define('SESSIOM_QA', 'session_qa');

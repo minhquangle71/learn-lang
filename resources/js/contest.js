@@ -24,9 +24,15 @@ $(document).ready(function () {
                 parent.addClass("success-answer");
             } else {
                 parent.addClass("fail-answer");
+                success_id = -1;
             }
 
             $("input[name='answer']").each((index, element) => {
+                if ($(element).val() != 0) {
+                    let parent_success = $(element).parent();
+                    $(parent_success).addClass("success-answer");
+                }
+
                 $(element).attr("disabled", true);
             });
 

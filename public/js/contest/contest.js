@@ -2310,8 +2310,13 @@ $(document).ready(function () {
         parent.addClass("success-answer");
       } else {
         parent.addClass("fail-answer");
+        success_id = -1;
       }
       $("input[name='answer']").each(function (index, element) {
+        if ($(element).val() != 0) {
+          var parent_success = $(element).parent();
+          $(parent_success).addClass("success-answer");
+        }
         $(element).attr("disabled", true);
       });
       $(this).addClass("disabled");

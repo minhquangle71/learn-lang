@@ -1,6 +1,12 @@
 <div class="card question">
     <div class="row my-2 mx-2 question-content text-center">
         Question: {{ $question_type == QUESTION_TRANSLATE ? $main_question->mean : $main_question->value }}
+        {{ $question_type == QUESTION_TRANSLATE ? '' : "({$main_question->explain})" }}
+    </div>
+</div>
+<div class="card mt-5">
+    <div class="row my-2 mx-2 text-center justify-content-center">
+        {{ $current_total }} / {{ TOTAL_QUESTION }}
     </div>
 </div>
 
@@ -16,6 +22,7 @@
                             <span class="answer_key"></span>
                             <span
                                 class="answer_value">{{ $question_type == QUESTION_TRANSLATE ? $question->value : $question->mean }}</span>
+                            <small>{{ $question_type == QUESTION_TRANSLATE ? "({$question->explain})" : '' }}</small>
                         </div>
                     </div>
                 </label>
