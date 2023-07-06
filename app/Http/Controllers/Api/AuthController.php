@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\User;
+use App\Models\DTO\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -33,8 +33,8 @@ class AuthController extends BaseController
         $input['password'] = bcrypt($input['password']);
 
         $user = User::create($input);
-        $success['token']    = $user->createToken(SECRET_KEY)->accessToken;
-        $success['name']     = $user->name;
+        $success['token'] = $user->createToken(SECRET_KEY)->accessToken;
+        $success['name']  = $user->name;
 
         return $this->sendResponse($success, 'User register successfully.');
     }
