@@ -13,3 +13,6 @@ define('LESSON_NOT_FOUND_MSG', 'Lessons not found, please try again');
 define('LESSON_DETAIL_MSG', 'Lesson detail');
 define('DELETE_LESSON_SUCCESS_MSG', 'Delete lesson success');
 define('DELETE_LESSON_FAIL_MSG', 'Delete lesson fail');
+
+// Exercise
+define('LIST_EXERCISE_MGS', 'List exercise');
