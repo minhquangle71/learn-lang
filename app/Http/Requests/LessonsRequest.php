@@ -41,8 +41,9 @@ class LessonsRequest extends FormRequest
     public function failedValidation(Validator $validator): HttpResponseException
     {
         throw new HttpResponseException(response()->json([
-            'status' => Response::HTTP_UNPROCESSABLE_ENTITY,
-            'errors' => $validator->errors()
-        ]));
+            'success' => false,
+            'message' => SAVE_LESSON_VAILIDATE_MSG,
+            'data'    => $validator->errors(),
+        ], Response::HTTP_BAD_REQUEST));
     }
 }

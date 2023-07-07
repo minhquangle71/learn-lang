@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\LessonsRequest;
 use App\Http\Resources\LessonsResource;
 use App\Models\DTO\Lessons;
-use Illuminate\Http\Request;
 
 class LessonsController extends BaseController
 {
@@ -17,7 +16,10 @@ class LessonsController extends BaseController
     public function index()
     {
         //
-        return LessonsResource::collection(Lessons::all());
+        return $this->sendResponse(
+            LessonsResource::collection(Lessons::all()),
+            LIST_LESSON_MSG
+        );
     }
 
     /**
@@ -33,9 +35,14 @@ class LessonsController extends BaseController
 
         $lessons->fill($request->all());
 
-        $lessons->save();
+        if (!$lessons->save()) {
+            return $this->sendError(SAVE_LESSON_FAIL_MSG);
+        }
 
-        return new LessonsResource($lessons);
+        return $this->sendResponse(
+            new LessonsResource($lessons),
+            SAVE_LESSON_SUCCESS_MSG
+        );
     }
 
     /**
@@ -47,6 +54,13 @@ class LessonsController extends BaseController
     public function show($id)
     {
         //
+        $lesson = Lessons::find($id);
+
+        if (!$lesson) {
+            return $this->sendError(LESSON_NOT_FOUND_MSG);
+        }
+
+        return $this->sendResponse($lesson, LESSON_DETAIL_MSG);
     }
 
     /**
@@ -56,9 +70,23 @@ class LessonsController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LessonsRequest $request, $id)
     {
         //
+        $lessons = Lessons::find($id);
+
+        if (!$lessons) {
+            return $this->sendError(LESSON_NOT_FOUND_MSG);
+        }
+
+        $lessons->fill($request->all());
+
+        $lessons->save();
+
+        return $this->sendResponse(
+            new LessonsResource($lessons),
+            SAVE_LESSON_SUCCESS_MSG
+        );
     }
 
     /**
@@ -70,5 +98,19 @@ class LessonsController extends BaseController
     public function destroy($id)
     {
         //
+        $lesson = Lessons::find($id);
+
+        if (!$lesson) {
+            return $this->sendError(LESSON_NOT_FOUND_MSG);
+        }
+
+        if (!$lesson->delete()) {
+            return $this->sendError(DELETE_LESSON_FAIL_MSG);
+        }
+
+        return $this->sendResponse(
+            $lesson,
+            DELETE_LESSON_SUCCESS_MSG
+        );
     }
 }
