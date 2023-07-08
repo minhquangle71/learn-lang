@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Response;
 
 class ExerciseRequest extends FormRequest
 {
@@ -13,7 +16,7 @@ class ExerciseRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +28,23 @@ class ExerciseRequest extends FormRequest
     {
         return [
             //
+            'japan_val' => 'required',
+            'vn_val'    => 'required',
+            'romaji'    => 'required',
         ];
+    }
+
+    /**
+     * @param Validator $validator
+     *
+     * @return HttpResponseException
+     */
+    public function failedValidation(Validator $validator): HttpResponseException
+    {
+        throw new HttpResponseException(response()->json([
+            'success' => false,
+            'message' => SAVE_LESSON_VAILIDATE_MSG,
+            'data'    => $validator->errors(),
+        ], Response::HTTP_BAD_REQUEST));
     }
 }

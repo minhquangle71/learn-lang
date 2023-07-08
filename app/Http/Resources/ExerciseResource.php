@@ -17,7 +17,7 @@ class ExerciseResource extends JsonResource
         return [
             'id'         => $this->id,
             'japan_val'  => $this->japan_val,
-            'vn_val'     => $this->van_val,
+            'vn_val'     => $this->vn_val,
             'romaji'     => $this->romaji,
             'tag'        => $this->tag,
             'note'       => $this->note,

@@ -16,3 +16,9 @@ define('DELETE_LESSON_FAIL_MSG', 'Delete lesson fail');
 
 // Exercise
 define('LIST_EXERCISE_MGS', 'List exercise');
+define('SAVE_EXERCISE_SUCCESS_MSG', 'Save exercise success');
+define('SAVE_EXERCISE_FAIL_MSG', 'Save exercise fail');
+define('EXERCISE_NOT_FOUND_MSG', 'Exercise not found');
+define('EXERCISE_DETAIL_MSG', 'Exercise detail');
+define('DELETE_EXERCISE_FAIL_MSG', 'Delete exercise fail');
+define('DELETE_EXERCISE_SUCCESS_MSG', 'Delete exercise success');

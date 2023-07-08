@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\ExerciseRequest;
+use App\Http\Resources\ExerciseResource;
 use App\Models\DTO\Exercise;
 use Illuminate\Http\Request;
 
@@ -27,9 +29,21 @@ class ExerciseController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExerciseRequest $request)
     {
         //
+        $exercise = new Exercise();
+
+        $exercise->fill($request->all());
+
+        if (!$exercise->save()) {
+            return $this->sendError(SAVE_EXERCISE_FAIL_MSG);
+        }
+
+        return $this->sendResponse(
+            new ExerciseResource($exercise),
+            SAVE_EXERCISE_SUCCESS_MSG
+        );
     }
 
     /**
@@ -41,6 +55,16 @@ class ExerciseController extends BaseController
     public function show($id)
     {
         //
+        $exercise = Exercise::find($id);
+
+        if (!$exercise) {
+            return $this->sendError(EXERCISE_NOT_FOUND_MSG);
+        }
+
+        return $this->sendResponse(
+            new ExerciseResource($exercise),
+            EXERCISE_DETAIL_MSG
+        );
     }
 
     /**
@@ -50,9 +74,25 @@ class ExerciseController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ExerciseRequest $request, $id)
     {
         //
+        $exercise = Exercise::find($id);
+
+        if (!$exercise) {
+            return $this->sendError(EXERCISE_NOT_FOUND_MSG);
+        }
+
+        $exercise->fill($request->all());
+
+        if (!$exercise->save()) {
+            return $this->sendError(SAVE_EXERCISE_FAIL_MSG);
+        }
+
+        return $this->sendResponse(
+            new ExerciseResource($exercise),
+            SAVE_EXERCISE_SUCCESS_MSG
+        );
     }
 
     /**
@@ -64,5 +104,19 @@ class ExerciseController extends BaseController
     public function destroy($id)
     {
         //
+        $exercise = Exercise::find($id);
+
+        if (!$exercise) {
+            return $this->sendError(EXERCISE_NOT_FOUND_MSG);
+        }
+
+        if (!$exercise->delete()) {
+            return $this->sendError(DELETE_EXERCISE_FAIL_MSG);
+        }
+
+        return $this->sendResponse(
+            new ExerciseResource($exercise),
+            DELETE_EXERCISE_SUCCESS_MSG
+        );
     }
 }

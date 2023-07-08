@@ -5,7 +5,8 @@ namespace App\Models\DTO;
 use App\Models\Logic\ExerciseLogic;
 use Illuminate\Database\Eloquent\Model;
 
-class Exercise extends Model
+class
+Exercise extends Model
 {
     use ExerciseLogic;
 
