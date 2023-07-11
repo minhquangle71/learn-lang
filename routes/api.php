@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ExerciseController;
 use App\Http\Controllers\Api\LessonsController;
+use App\Http\Controllers\LearningController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,8 @@ Route::middleware('auth:api')->group(function ($route) {
     $route->apiResource('lessons', LessonsController::class);
 
     $route->apiResource('exercise', ExerciseController::class);
+
+    $route->get('learning', [LearningController::class, 'processLearning']);
 });
 
 Route::post('register', [AuthController::class, 'register'])->name('auth.register');

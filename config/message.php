@@ -22,3 +22,7 @@ define('EXERCISE_NOT_FOUND_MSG', 'Exercise not found');
 define('EXERCISE_DETAIL_MSG', 'Exercise detail');
 define('DELETE_EXERCISE_FAIL_MSG', 'Delete exercise fail');
 define('DELETE_EXERCISE_SUCCESS_MSG', 'Delete exercise success');
+
+// Learning
+define('LEARNING_PROCESS_MSG', 'Learning process');
+define('LEARNING_PROCESS_COMPLETED_MSG', 'Learning process completed');

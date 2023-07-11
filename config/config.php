@@ -12,3 +12,14 @@ define('N5', 'N5');
 define('LEVELS', [N1, N2, N3, N4, N5]);
 
 define('DATE_TIME_FORMAT', 'Y-m-d H:i:s');
+
+define('TAG_VOCABULARY', 0);
+define('TAG_KANJI', 1);
+
+define('TAG_TYPE', [
+    TAG_VOCABULARY => 'Vocabulary',
+    TAG_KANJI      => 'Kanji',
+]);
+
+define('TOTAL_QUESTION', 20);
+define('TOTAL_CORRECT', 'total_correct');
