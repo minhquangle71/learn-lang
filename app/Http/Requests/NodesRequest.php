@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Response;
 
-class ExerciseRequest extends FormRequest
+class NodesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,10 +28,8 @@ class ExerciseRequest extends FormRequest
     {
         return [
             //
-            'original' => 'required',
-            'mean'     => 'required',
-            'romaji'   => 'required',
-            'node_id'  => 'required',
+            'path' => 'required',
+            'name' => 'required',
         ];
     }
 

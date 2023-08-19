@@ -2,12 +2,12 @@
 
 namespace App\Models\DTO;
 
-use App\Models\Logic\ExerciseLogic;
+use App\Models\Logic\NodesLogic;
 use Illuminate\Database\Eloquent\Model;
 
-class Exercise extends Model
+class Nodes extends Model
 {
-    use ExerciseLogic;
+    use NodesLogic;
 
     /**
      * Indicates if the model's ID is auto-incrementing.
@@ -21,7 +21,7 @@ class Exercise extends Model
      *
      * @var string
      */
-    protected $table = 'exercise';
+    protected $table = 'nodes';
 
     /**
      * The primary key associated with the table.
@@ -36,15 +36,11 @@ class Exercise extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
-        'original',
-        'mean',
-        'romaji',
-        'note',
-        'node_id',
+        'name',
+        'path',
         'user_id',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     protected $dates = [

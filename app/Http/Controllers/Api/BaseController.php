@@ -13,15 +13,15 @@ class BaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function sendResponse($result, $message, $status = Response::HTTP_OK)
+    public function sendResponse($result, $message)
     {
         $response = [
             'success' => true,
-            'data'    => $result,
+            'result'  => $result,
             'message' => $message,
         ];
 
-        return response()->json($response, $status);
+        return response()->json($response, Response::HTTP_OK);
     }
 
     /**
@@ -29,7 +29,7 @@ class BaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function sendError($error, $errorMessages = [], $code = Response::HTTP_NOT_FOUND)
+    public function sendError($error, $errorMessages = [])
     {
         $response = [
             'success' => false,
@@ -38,10 +38,10 @@ class BaseController extends Controller
 
 
         if (!empty($errorMessages)) {
-            $response['data'] = $errorMessages;
+            $response['result'] = $errorMessages;
         }
 
 
-        return response()->json($response, $code);
+        return response()->json($response, Response::HTTP_OK);
     }
 }

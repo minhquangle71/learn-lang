@@ -16,14 +16,13 @@ class ExerciseResource extends JsonResource
     {
         return [
             'id'         => $this->id,
-            'japan_val'  => $this->japan_val,
-            'vn_val'     => $this->vn_val,
-            'romaji'     => $this->romaji,
-            'tag'        => $this->tag,
+            'original'   => $this->original,
+            'mean'       => $this->mean,
             'note'       => $this->note,
-            'lesson_id'  => $this->lesson_id,
-            'created_at' => $this->created_at->format(DATE_TIME_FORMAT),
-            'updated_at' => $this->updated_at->format(DATE_TIME_FORMAT),
+            'romaji'     => $this->romaji,
+            'node_id'    => $this->node_id,
+            'created_at' => $this->created_at->format(DATETIME_FORMAT_RESPONSE),
+            'updated_at' => $this->updated_at->format(DATETIME_FORMAT_RESPONSE),
         ];
     }
 }

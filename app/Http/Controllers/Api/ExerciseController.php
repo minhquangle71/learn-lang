@@ -36,6 +36,8 @@ class ExerciseController extends BaseController
 
         $exercise->fill($request->all());
 
+        $exercise->user_id = auth()->user()->id;
+
         if (!$exercise->save()) {
             return $this->sendError(SAVE_EXERCISE_FAIL_MSG);
         }
@@ -84,6 +86,8 @@ class ExerciseController extends BaseController
         }
 
         $exercise->fill($request->all());
+
+        $exercise->user_id = auth()->user()->id;
 
         if (!$exercise->save()) {
             return $this->sendError(SAVE_EXERCISE_FAIL_MSG);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\DTO\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends BaseController
@@ -56,7 +57,7 @@ class AuthController extends BaseController
         if ($validator->fails()) {
             return $this->sendError(VALIDATE_ERROR, $validator->errors());
         }
-
+        Log::info($request->all());
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
             $data = [

@@ -12,6 +12,8 @@ define('N5', 'N5');
 define('LEVELS', [N1, N2, N3, N4, N5]);
 
 define('DATE_TIME_FORMAT', 'Y-m-d H:i:s');
+define('DATETIME_FORMAT_RESPONSE', 'Y-m-d');
+
 
 define('TAG_VOCABULARY', 0);
 define('TAG_KANJI', 1);

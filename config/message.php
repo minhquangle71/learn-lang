@@ -26,3 +26,12 @@ define('DELETE_EXERCISE_SUCCESS_MSG', 'Delete exercise success');
 // Learning
 define('LEARNING_PROCESS_MSG', 'Learning process');
 define('LEARNING_PROCESS_COMPLETED_MSG', 'Learning process completed');
+
+// Nodes
+define('LIST_NODES_MSG', 'List nodes');
+define('DETAIL_NODES_MSG', 'Detail nodes');
+define('SAVE_NODE_SUCCESS_MSG', 'Save node success');
+define('SAVE_NODES_FAIL_MSG', 'Save node fail, please try again');
+define('NODE_NOT_FOUND_MSG', 'Node not found, please try again');
+define('DELETE_NODE_SUCCESS_MSG', 'Delete node sucss');
+define('DELETE_NODE_FAIL_MSG', 'Delete node fail, please try again');
