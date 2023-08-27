@@ -33,6 +33,7 @@ Route::middleware('auth:api')->group(function ($route) {
 
 
     $route->get('learning', [LearningController::class, 'processLearning']);
+    $route->get('writing', [LearningController::class, 'writing']);
 });
 
 Route::post('register', [AuthController::class, 'register'])->name('auth.register');

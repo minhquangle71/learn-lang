@@ -44,9 +44,25 @@
       </div>
     </div>
 
+    <div class="header__logout"
+        @click="handleClickLogout()">
+        <i class="fa fa-door-open fa-2x fa-fw"></i>
+    </div>
+
     <div class="header__effect"></div>
 </template>
 
 <script>
-    export default {}
+import { mapState } from 'vuex';
+
+    export default {
+        computed: {
+            ...mapState(['users'])
+        },
+        methods: {
+            handleClickLogout() {
+                this.$store.dispatch('users/logout')
+            }
+        }
+    }
 </script>

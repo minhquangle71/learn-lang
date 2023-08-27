@@ -335,4 +335,12 @@
             }
         }
     }
+
+    &__logout {
+        position: absolute;
+        right: 2%;
+        margin-top: 0.5rem;
+        border: 1px solid;
+        padding: 2px 5px;
+    }
 }

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const token = ''
+const token = localStorage.getItem('token')
 
 export const request = axios.create({
     baseURL: process.env.MIX_API_URL,

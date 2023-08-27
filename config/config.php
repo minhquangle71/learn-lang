@@ -25,3 +25,9 @@ define('TAG_TYPE', [
 
 define('TOTAL_QUESTION', 20);
 define('TOTAL_CORRECT', 'total_correct');
+define('TOTAL_WRITING_CORRECT', 'total_writing_correct');
+
+define('PARAM_CURRENT_ID', 'current_id');
+define('PARAM_IS_INIT', 'is_init');
+define('PARAM_NODE_ID', 'node_id');
+define('PARAM_ANSWER', 'answer');

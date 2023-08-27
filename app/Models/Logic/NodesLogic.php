@@ -17,6 +17,7 @@ trait NodesLogic
             'id',
             'name',
             'path',
+            'levels',
             'created_at',
             'updated_at',
         ]);

@@ -1,4 +1,4 @@
-import { MESSAGE_TYPE } from "../../constant";
+import { MESSAGE_TYPE, LOCAL_STORAGE } from "../../constant";
 import router from "../../router";
 import userApi from "../../request/userApi";
 import { useToast } from "vue-toast-notification";
@@ -13,9 +13,15 @@ export default {
             }
 
             if (data.success) {
-                localStorage.setItem('token', data.result.token)
+                const userInfo = {
+                    token: data.result.token,
+                    email: data.result.email,
+                }
+                console.log(userInfo)
 
-                commit('SET_LOGIN', {isLogin: true, email: data.email, inform})
+                localStorage.setItem(LOCAL_STORAGE.USER_INFO, JSON.stringify(userInfo))
+
+                commit('SET_LOGIN', {isLogin: true, email: data.result.email, inform})
             } else {
                 inform = {
                     message: 'Login fail 200',
@@ -28,7 +34,7 @@ export default {
 
             toast.open(inform)
 
-            router.push({name: 'Levels'})
+            router.push({name: 'Home'})
         }, (response) => {
             let inform = {
                 message: 'Login fail',
@@ -40,5 +46,19 @@ export default {
             commit('SET_INFORM', inform)
         })
 
+    },
+    logout: ({commit}) => {
+        const toast = useToast();
+        let inform = {
+            message: 'Logout success',
+            type: MESSAGE_TYPE.SUCCESS
+        }
+
+        commit('LOGOUT')
+        commit('SET_INFORM', inform)
+
+        router.go('/login')
+        localStorage.setItem(LOCAL_STORAGE.USER_INFO, null)
+        toast.open(inform)
     }
 }

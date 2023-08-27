@@ -1,4 +1,4 @@
-.home {
+.lesson {
     height: 100vh;
     width: 100vw;
     $header: 60px;
@@ -19,19 +19,9 @@
             height: $paginate;
         }
 
-        &__lessons {
-            min-height: $lessons;
-
-            &__thumb {
-                height: $thumb;
-                cursor: pointer;
-
-                a {
-                    &:hover {
-                        text-decoration: none;
-                    }
-                }
-            }
+        &__button {
+            width: 150px;
+            height: 40px;
         }
     }
 }

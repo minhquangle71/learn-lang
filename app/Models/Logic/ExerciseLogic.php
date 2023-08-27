@@ -19,13 +19,12 @@ trait ExerciseLogic
 
     function scopeByAnswer($query, $answer): Builder
     {
-        return $query->where('japan_val', $answer);
+        return $query->where('original', $answer);
     }
 
     function scopeForIsCorrect($query, $param): Builder
     {
-        return $query->byId($param['current_question'])
-            ->byAnswer($param['answer']);
+        return $query->byParams($param);
     }
 
     function scopeByLesson($query, $lesson_id): Builder
@@ -36,6 +35,24 @@ trait ExerciseLogic
     function scopeExcludeIds($query, $ids): Builder
     {
         return $query->whereNotIn('id', (array) $ids);
+    }
+
+    function scopeByNodeId($query, $node_id): Builder
+    {
+        return $query->whereIn('node_id', (array) $node_id);
+    }
+
+    function scopeByParams($query, $param): Builder
+    {
+        if (isset($param[PARAM_CURRENT_ID])) {
+            $query->byId($param[PARAM_CURRENT_ID]);
+        }
+
+        if (isset($param[PARAM_ANSWER])) {
+            $query->byAnswer($param[PARAM_ANSWER]);
+        }
+
+        return $query;
     }
 
     /**
@@ -50,10 +67,10 @@ trait ExerciseLogic
             ->first();
     }
 
-    public static function generateExercise($current_question, $lesson_id)
+    public static function generateExercise($exclude_ids, $node_id)
     {
-        return static::byLesson($lesson_id)
-            ->excludeIds($current_question)
+        return static::byNodeId($node_id)
+            ->excludeIds($exclude_ids)
             ->get()
             ->shuffle()
             ->first();
@@ -62,6 +79,12 @@ trait ExerciseLogic
     public static function totalQuestionByLesson($lesson_id)
     {
         return static::byLesson($lesson_id)
+            ->count();
+    }
+
+    public static function totalQuestionByNode($node_id)
+    {
+        return static::byNodeId($node_id)
             ->count();
     }
 }

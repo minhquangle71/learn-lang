@@ -3,7 +3,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'vue-toast-notification/dist/theme-sugar.css';
 @import 'vue-awesome-paginate/dist/style.css';
-
+@import 'vue3-tree/dist/style.css';
 
 
 // Common
@@ -14,5 +14,6 @@
 // Page
 @import './page/login';
 @import './page/home';
+@import './page/lesson';
 
 

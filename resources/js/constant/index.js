@@ -3,3 +3,6 @@ export const MESSAGE_TYPE = {
     ERROR: 'error'
 }
 
+export const LOCAL_STORAGE = {
+    USER_INFO: 'user_info',
+}

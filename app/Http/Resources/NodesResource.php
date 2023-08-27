@@ -18,8 +18,9 @@ class NodesResource extends JsonResource
             'id'         => $this->id,
             'name'       => $this->name,
             'path'       => $this->path,
-            'created_at' => $this->created_at->format(DATETIME_FORMAT),
-            'updated_at' => $this->updated_at->format(DATETIME_FORMAT),
+            'levels'     => $this->levels,
+            'created_at' => $this->created_at->format(DATETIME_FORMAT_RESPONSE),
+            'updated_at' => $this->updated_at->format(DATETIME_FORMAT_RESPONSE),
         ];
     }
 }
