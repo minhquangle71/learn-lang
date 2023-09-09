@@ -1,3 +1,7 @@
+import { ref } from "vue";
+
 export default {
-    lessonList: state => state.lessonList
+    lessonsList: state => state.lessonsList,
+    lessonDetail: state => state.lessonDetail,
+    nodes: state => state.lessonDetail.nodes
 }

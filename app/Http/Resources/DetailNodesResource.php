@@ -15,13 +15,10 @@ class DetailNodesResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'         => $this->id,
-            'name'       => $this->name,
-            'path'       => $this->path,
-            'levels'     => $this->levels,
-            'created_at' => $this->created_at->format(DATETIME_FORMAT_RESPONSE),
-            'updated_at' => $this->updated_at->format(DATETIME_FORMAT_RESPONSE),
-            'childs'     => NodesResource::collection($this->childs()),
+            'id'              => $this->id,
+            'label'           => $this->label_text,
+            'total_exercises' => $this->exercises->count(),
+            'nodes'           => DetailNodesResource::collection($this->childs()),
         ];
     }
 }

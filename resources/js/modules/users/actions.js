@@ -17,7 +17,6 @@ export default {
                     token: data.result.token,
                     email: data.result.email,
                 }
-                console.log(userInfo)
 
                 localStorage.setItem(LOCAL_STORAGE.USER_INFO, JSON.stringify(userInfo))
 

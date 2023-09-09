@@ -5,90 +5,14 @@
             <!-- Lesson -->
             <div class="home__content__lessons">
                 <div class="row w-100 mx-auto">
-                    <div class="col-md-3 col-6 mb-2 home__content__lessons__thumb">
-                        <router-link to="/lesson">
+                    <div :key="item.id"
+                        v-for="item in lessons"
+                        class="col-md-3 col-6 mb-2 home__content__lessons__thumb">
+                        <router-link :to="`/lesson/${item.id}`">
                             <div class="card h-100">
-                                <img class="card-img-top" src="holder.js/100px180/" alt="">
+                                <img class="card-img-top mx-auto mt-1" src="/images/thumb.jpg" width="100px" alt="">
                                 <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
-                                    <p class="card-text">Text</p>
-                                </div>
-                            </div>
-                        </router-link>
-                    </div>
-                    <div class="col-md-3 col-6 mb-2 home__content__lessons__thumb">
-                        <router-link to="/lesson">
-                            <div class="card h-100">
-                                <img class="card-img-top" src="holder.js/100px180/" alt="">
-                                <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
-                                    <p class="card-text">Text</p>
-                                </div>
-                            </div>
-                        </router-link>
-                    </div>
-                    <div class="col-md-3 col-6 mb-2 home__content__lessons__thumb">
-                        <router-link to="/lesson">
-                            <div class="card h-100">
-                                <img class="card-img-top" src="holder.js/100px180/" alt="">
-                                <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
-                                    <p class="card-text">Text</p>
-                                </div>
-                            </div>
-                        </router-link>
-                    </div>
-                    <div class="col-md-3 col-6 mb-2 home__content__lessons__thumb">
-                        <router-link to="/lesson">
-                            <div class="card h-100">
-                                <img class="card-img-top" src="holder.js/100px180/" alt="">
-                                <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
-                                    <p class="card-text">Text</p>
-                                </div>
-                            </div>
-                        </router-link>
-                    </div>
-                    <div class="col-md-3 col-6 mb-2 home__content__lessons__thumb">
-                        <router-link to="/lesson">
-                            <div class="card h-100">
-                                <img class="card-img-top" src="holder.js/100px180/" alt="">
-                                <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
-                                    <p class="card-text">Text</p>
-                                </div>
-                            </div>
-                        </router-link>
-                    </div>
-                    <div class="col-md-3 col-6 mb-2 home__content__lessons__thumb">
-                        <router-link to="/lesson">
-                            <div class="card h-100">
-                                <img class="card-img-top" src="holder.js/100px180/" alt="">
-                                <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
-                                    <p class="card-text">Text</p>
-                                </div>
-                            </div>
-                        </router-link>
-                    </div>
-                    <div class="col-md-3 col-6 mb-2 home__content__lessons__thumb">
-                        <router-link to="/lesson">
-                            <div class="card h-100">
-                                <img class="card-img-top" src="holder.js/100px180/" alt="">
-                                <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
-                                    <p class="card-text">Text</p>
-                                </div>
-                            </div>
-                        </router-link>
-                    </div>
-                    <div class="col-md-3 col-6 mb-2 home__content__lessons__thumb">
-                        <router-link to="/lesson">
-                            <div class="card h-100">
-                                <img class="card-img-top" src="holder.js/100px180/" alt="">
-                                <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
-                                    <p class="card-text">Text</p>
+                                    <h4 class="card-title">{{ item.name }}</h4>
                                 </div>
                             </div>
                         </router-link>
@@ -113,12 +37,21 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 
     export default{
+        mounted() {
+            this.$store.dispatch('lessons/getLessonList')
+        },
         data() {
             return {
                 currentPage: 1
             }
+        },
+        computed: {
+            ...mapGetters({
+                lessons: 'lessons/lessonsList'
+            })
         },
 
         methods: {

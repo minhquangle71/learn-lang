@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
                                  .getElementsByClassName("header__wrapper__nav-items")
                                  [0].classList.contains('show-menu')
 
-                 console.log(isToggler)
                  document
                      .getElementsByClassName("header__wrapper")
                      [0].classList.toggle("is-open", isToggler);

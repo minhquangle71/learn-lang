@@ -1,0 +1,40 @@
+.writing {
+    height: 100vh;
+    width: 100vw;
+    $header: 60px;
+    $content: calc(100vh - #{$header});
+    $paginate: 65px;
+    $writings: calc(#{$content} - #{$paginate});
+    $writing_row: 2;
+    $thumb: calc(#{$writings}/#{$writing_row} - 20px);
+
+    &__head {
+        height: $header;
+    }
+
+    &__content {
+        height: $content;
+
+        img {
+            width: 150px;
+            height: 150px;
+        }
+
+        &__paginate {
+            height: $paginate;
+        }
+
+        &__button {
+            width: 150px;
+            height: 40px;
+        }
+
+        &__question {
+            height: calc(3/5 * #{$content});
+        }
+
+        &__answer {
+            height: calc(2/5 * #{$content});
+        }
+    }
+}

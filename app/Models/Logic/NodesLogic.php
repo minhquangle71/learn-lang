@@ -2,10 +2,22 @@
 
 namespace App\Models\Logic;
 
+use App\Models\DTO\Exercise;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait NodesLogic
 {
+    /**
+     * ---------------------------------------------------------------------
+     * Relationship
+     * ---------------------------------------------------------------------
+     */
+    public function exercises(): HasMany
+    {
+        return $this->hasMany(Exercise::class, 'node_id', 'id');
+    }
+
     /**
      * ---------------------------------------------------------------------
      * Scope
@@ -25,7 +37,7 @@ trait NodesLogic
 
     public function scopeByPath($query, $path): Builder
     {
-        return $query->where('path', 'like', "{$path}%");
+        return $query->where('path', $path);
     }
 
     public function scopeForRoot($query): Builder
@@ -41,6 +53,31 @@ trait NodesLogic
 
     public function childs()
     {
-        return $this::byPath($this->id)->simple()->get();
+        $path = "{$this->path}.{$this->id}";
+
+        if (!$this->path) {
+            $path = $this->id;
+        }
+
+        return $this::byPath($path)
+            ->with('exercises')
+            ->simple()
+            ->orderBy('levels')
+            ->get();
+    }
+
+    /**
+     * ---------------------------------------------------------------------
+     * Attribute
+     * ---------------------------------------------------------------------
+     */
+
+    public function getLabelTextAttribute()
+    {
+        if (!$this->exercises->count()) {
+            return $this->name;
+        }
+
+        return "{$this->name} - ( {$this->exercises->count()} exercises)";
     }
 }
