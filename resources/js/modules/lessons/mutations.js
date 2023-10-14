@@ -5,8 +5,6 @@ export default {
         state.lessonsList = lessonsList
     },
     SET_LESSON_DETAIL(state, lessonDetail) {
-        let nodes = lessonDetail.nodes
-
         state.lessonDetail = lessonDetail
     },
 

@@ -3,7 +3,7 @@
         <div class="lesson__head" />
         <div class="lesson__content row w-100 mx-auto">
             <div class="card col-md-4 col-12 mx-auto">
-              <img class="card-img-top mt-3" src="/images/thumb.jpg" width="400px" alt="">
+              <img class="card-img-top mt-3" src="/images/thumb_1.png" width="400px" alt="">
               <div class="card-body">
                 <h4 class="card-title">Title</h4>
                 <p class="card-text">Text</p>
@@ -24,7 +24,6 @@
                         :nodes="nodes_test"
                         :search-text="searchText"
                         :use-icon="true"
-                        use-row-delete
                         @nodeClick="onNodeClick"
                     />
                 </div>

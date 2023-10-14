@@ -31,6 +31,11 @@
 
         &__question {
             height: calc(3/5 * #{$content});
+
+            .card-body {
+                font-size: 35px;
+                padding: 15px 0px;
+            }
         }
 
         &__answer {

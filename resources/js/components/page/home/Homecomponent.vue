@@ -10,7 +10,7 @@
                         class="col-md-3 col-6 mb-2 home__content__lessons__thumb">
                         <router-link :to="`/lesson/${item.id}`">
                             <div class="card h-100">
-                                <img class="card-img-top mx-auto mt-1" src="/images/thumb.jpg" width="100px" alt="">
+                                <img class="card-img-top mx-auto mt-1" src="/images/thumb_1.png" width="100px" alt="">
                                 <div class="card-body">
                                     <h4 class="card-title">{{ item.name }}</h4>
                                 </div>

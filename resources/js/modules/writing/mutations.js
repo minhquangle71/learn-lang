@@ -1,3 +1,6 @@
+import defaultState from "./state"
+
+
 export default {
     SET_EXERCISE(state, {question, checkedExercise, isDone, oldExercise}) {
         state.checkedExercise = checkedExercise
@@ -7,5 +10,5 @@ export default {
     },
     SET_OLD_EXERCISE(state, {oldExercise}) {
         state.oldExercise = oldExercise
-    }
+    },
 }

@@ -45,6 +45,11 @@ trait NodesLogic
         return $query->whereNull('path');
     }
 
+    public function scopeById($query, $id): Builder
+    {
+        return $query->whereIn('id', (array) $id);
+    }
+
     /**
      * ---------------------------------------------------------------------
      * Mutations
@@ -63,6 +68,7 @@ trait NodesLogic
             ->with('exercises')
             ->simple()
             ->orderBy('levels')
+            ->orderBy('id', 'ASC')
             ->get();
     }
 

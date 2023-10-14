@@ -26,7 +26,7 @@ class LearningController extends BaseController
             return $this->sendResponse([
                 'question'        => $question,
                 'total_corect'    => 0,
-                'isDone'          => true,
+                'isDone'          => false,
                 'checkedExercise' => null,
                 'oldExercise'     => null,
             ]);

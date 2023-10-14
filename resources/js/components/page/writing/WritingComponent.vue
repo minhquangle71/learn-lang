@@ -3,13 +3,20 @@
         <div class="writing__head" />
         <div class="writing__content row w-100 mx-auto">
             <div class="writing__content__question card col-md-5 col-12 mx-auto">
-              <img class="card-img-top mt-3 mx-auto" src="/images/thumb.jpg" alt="">
+              <img class="card-img-top mt-3 mx-auto" src="/images/thumb_1.png" alt="">
               <div v-if="!isDone"
                 class="card-body">
                 <template v-if="oldExercise == null">
                     <h4 class="card-title">Question</h4>
                     <p class="card-text">{{ question.mean }}</p>
-                    <p class="card-text">({{ question.romaji }})</p>
+                    <p :class="showHint ? '' : 'd-none'"
+                        class="card-text">
+                        ({{ question.romaji }})
+                    </p>
+                    <div class="btn btn-warning"
+                        @click="showHint = !showHint">
+                        {{ showHint ? 'Hide Hint' : 'Hint' }}
+                    </div>
                 </template>
                 <template v-else>
                     <h4 class="card-title">{{ checkedExercise == true ? 'Success' : 'Fail' }}</h4>
@@ -32,7 +39,8 @@
                         <div :class="oldExercise === null ? '' : 'd-none'"
                             class="form-group w-50 mx-auto">
                           <label for="answer">Answer</label>
-                          <input v-model="params.answer"
+                          <input ref="answer"
+                            v-model="params.answer"
                             type="text"
                             id="answer"
                             class="form-control">
@@ -48,12 +56,15 @@
                             @click="clickContinue()">
                             Continue
                         </div>
+                        <router-link :to="`/lesson/${lessonId}`">
+                            <div class="btn btn-warning lesson__content__button">Return</div>
+                        </router-link>
                     </div>
                 </template>
                 <template v-else>
                     <div class="col-6 mx-auto d-flex text-center justify-content-around">
                         <router-link :to="`/lesson/${lessonId}`">
-                                <div class="btn btn-success lesson__content__button">Return</div>
+                            <div class="btn btn-warning lesson__content__button">Return</div>
                         </router-link>
                     </div>
                 </template>
@@ -64,6 +75,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import defaulState from '../../../modules/writing/state'
 
     export default {
         data: function() {
@@ -74,7 +86,8 @@ import { mapGetters } from 'vuex';
                     answer: '',
                     currentId: 0
                 },
-                lessonId: null
+                lessonId: null,
+                showHint: false,
             }
         },
         mounted: function() {
@@ -90,6 +103,7 @@ import { mapGetters } from 'vuex';
                 this.loading = true
                 let self = this
                 this.$store.dispatch('writing/getQuestion', this.params)
+                this.$refs.answer.focus()
             }
         },
         computed: {
@@ -106,6 +120,7 @@ import { mapGetters } from 'vuex';
                 this.loading = true
                 this.params.currentId = this.currentQuestionId
                 let self = this
+                this.showHint = false
                 this.params.callback = () => {
                     self.loading = false
                     self.params.answer = ''
@@ -113,8 +128,17 @@ import { mapGetters } from 'vuex';
                 this.$store.dispatch('writing/getQuestion', this.params)
             },
             clickContinue: function() {
-                this.$store.commit('writing/SET_OLD_EXERCISE', {oldExercise: null})
+                this.$refs.answer.focus()
+                this.$store.commit('writing/SET_OLD_EXERCISE', { oldExercise: null })
             }
+        },
+        beforeRouteLeave() {
+            this.$store.commit('writing/SET_EXERCISE',  {
+                question: '',
+                checkedExercise: null,
+                isDone: false,
+                oldExercise: null,
+            })
         }
     }
 </script>

@@ -23,10 +23,6 @@
               </div>
             </div>
 
-            <div class="auth-screen_feature row">
-                <div class="col-md-6"><a href="">sadsad</a></div>
-            </div>
-
 
             <div class="auth-screen__button row text-center">
                 <div class="col-md-6">
